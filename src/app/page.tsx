@@ -67,7 +67,10 @@ const HomePage = () => {
       return;
     }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new (ethers as any).providers.Web3Provider(
+      window.ethereum,
+      "any"
+    );
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -79,7 +82,7 @@ const HomePage = () => {
     try {
       const contract = await init();
       if (contract) {
-        const amountToDeposit = ethers.utils.parseEther("0.0001");
+        const amountToDeposit = (ethers as any).utils.parseEther("0.0001");
         console.log("Amount to deposit:", amountToDeposit.toString());
 
         // Проверка текущего состояния
@@ -91,7 +94,7 @@ const HomePage = () => {
 
         const tx = await contract.deposit({
           value: amountToDeposit,
-          gasLimit: ethers.BigNumber.from("3000000"),
+          gasLimit: (ethers as any).BigNumber.from("3000000"),
         });
         console.log("Transaction sent:", tx);
         await tx.wait();
@@ -124,7 +127,7 @@ const HomePage = () => {
         }
 
         const tx = await contract.ship({
-          gasLimit: ethers.BigNumber.from("3000000"),
+          gasLimit: (ethers as any).BigNumber.from("3000000"),
         });
         console.log("Transaction sent:", tx);
         await tx.wait();
@@ -155,7 +158,7 @@ const HomePage = () => {
         }
 
         const tx = await contract.confirmDelivery({
-          gasLimit: ethers.BigNumber.from("3000000"),
+          gasLimit: (ethers as any).BigNumber.from("3000000"),
         });
         console.log("Transaction sent:", tx);
         await tx.wait();
@@ -186,7 +189,7 @@ const HomePage = () => {
         }
 
         const tx = await contract.acceptOrder({
-          gasLimit: ethers.BigNumber.from("3000000"),
+          gasLimit: (ethers as any).BigNumber.from("3000000"),
         });
         console.log("Transaction sent:", tx);
         await tx.wait();
@@ -205,19 +208,19 @@ const HomePage = () => {
     }
   };
 
-//   const acceptOrder = async () => {
-//     try {
-//       const contract = await init();
-//       if (contract) {
-//         const tx = await contract.acceptOrder();
-//         await tx.wait();
-//         setStatus("Order accepted and funds transferred.");
-//       }
-//     } catch (error: any) {
-//       console.error("Error accepting order:", error);
-//       setStatus("Error accepting order: " + error.message);
-//     }
-//   };
+  //   const acceptOrder = async () => {
+  //     try {
+  //       const contract = await init();
+  //       if (contract) {
+  //         const tx = await contract.acceptOrder();
+  //         await tx.wait();
+  //         setStatus("Order accepted and funds transferred.");
+  //       }
+  //     } catch (error: any) {
+  //       console.error("Error accepting order:", error);
+  //       setStatus("Error accepting order: " + error.message);
+  //     }
+  //   };
 
   const checkStatus = async () => {
     try {

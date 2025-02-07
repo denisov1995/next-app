@@ -1,15 +1,8 @@
 import BackButton from "@/app/components/BackButton";
 import { fetchUserData } from "../../lib/fetchUserData";
-import { User } from "@/app/types/User";
-
-interface UserPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const UserPage = async ({ params }: UserPageProps) => {
-  const user = await fetchUserData(params.id);
+const UserPage = async ({ params }: any) => {
+  const paramsValue = await params;
+  const user = await fetchUserData(paramsValue.id);
 
   if (!user) {
     return (
