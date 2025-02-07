@@ -4,6 +4,17 @@ import { users } from '../../../../db/db.json'; // Предполагаем, ч�
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query; // Получаем идентификатор пользователя из URL
 
+    // Добавляем заголовки CORS
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Замените '*' на конкретный домен в продакшн среде
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+
+    // Обработка preflight-запросов
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
 
     if (req.method === 'GET') {
         const user = users.find((user: any) => user.id == id); // Находим пользователя по идентификатору
