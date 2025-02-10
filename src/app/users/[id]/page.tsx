@@ -17,7 +17,7 @@ const UserPage = async ({ params }: any) => {
 
   if (!user) {
     return (
-      <div className="text-center text-red-500">Пользователь не найден</div>
+      <div className="text-center text-red-500">Пользователь ${us} 123 не найден</div>
     );
   }
 
