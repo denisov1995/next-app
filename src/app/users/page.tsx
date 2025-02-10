@@ -9,7 +9,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 async function fetchAllUsers(): Promise<User[]> {
   const res = await fetch(`${apiUrl}/users`);
   const users: User[] = (await res.json()).data.users;
-  console.log('res', res);
   return users;
 }
 
@@ -22,8 +21,6 @@ const UsersPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const users = await fetchAllUsers();
-      console.log('users', users);
-      
       setUsers(users);
     };
     fetchData();
