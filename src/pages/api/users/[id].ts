@@ -8,12 +8,6 @@ export default function handler(req: NextApiRequest, res: any) {
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-    // Отключаем кэширование
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
-
     if (req.method === 'OPTIONS') {
         res.status(200).end();
         return;
@@ -23,7 +17,7 @@ export default function handler(req: NextApiRequest, res: any) {
     if (req.method === 'GET') {
         const user = users.find(user => user.id === parseInt(id as string));
         if (user) {
-            res.status(200).json({ message: 'User fetched successfully!', data: { user } });
+            res.status(200).json({ data: { user } });
         } else {
             res.status(404).json({ message: 'User not found' });
         }
