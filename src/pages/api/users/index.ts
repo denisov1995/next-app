@@ -94,7 +94,7 @@ export default function handler(req: NextApiRequest, res: any) {
         res.status(201).json(newUser);
     } else if (req.method === 'GET') {
         console.log('{ data: { users } }', { data: { users } });
-        res.status(200).json({ data: { users } });
+        res.status(200).json("{ data: { users } }");
     } else {
         res.status(405).json({ message: 'Метод не поддерживается' });
     }
