@@ -1,6 +1,6 @@
+"use client"
 import BackButton from "@/app/components/BackButton";
 import { fetchUserData } from "@/app/lib/fetchUserData";
-import { log } from "console";
 const UserPage = async ({ params }: any) => {
   const paramsValue = await params;
   console.log('paramsValue',paramsValue);
