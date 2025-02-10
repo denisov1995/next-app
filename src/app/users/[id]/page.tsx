@@ -1,7 +1,7 @@
 "use client"
 
 import BackButton from "@/app/components/BackButton";
-import { fetchUserData } from "../../lib/fetchUserData";
+import { fetchUserData } from "@/app/lib/fetchUserData";
 import { fetchAllUsers } from "@/app/lib/fetchAllUsers";
 const UserPage = async ({ params }: any) => {
   const us = await fetchAllUsers()
