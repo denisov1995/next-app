@@ -6,15 +6,11 @@ import BackButton from "../components/BackButton";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // Функция для получения всех пользователей
-async function fetchAllUsers(): Promise<any> {
+async function fetchAllUsers(): Promise<User[]> {
   const res = await fetch(`${apiUrl}/users`);
+  const users: User[] = (await res.json()).data.users;
   console.log('res', res);
-  const users1: any = (await res.text()) as any;
-  console.log('users1', users1);
-  // const users: User[] = (await res.json()).data.users;
-
-  // console.log('users', users);
-  return "users";
+  return users;
 }
 
 // Компонент страницы пользователей
