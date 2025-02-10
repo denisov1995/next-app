@@ -97,7 +97,7 @@ const UsersPage = () => {
             <p className="text-sm mb-1">{user.email}</p>
             <p className="text-sm mb-4">{user.phone}</p>
             <Link
-              href={`/users/${user.id}`}
+              href={`${apiUrl}/users/${user.id}`}
               className="text-green-500 hover:text-green-700"
             >
               Подробнее
