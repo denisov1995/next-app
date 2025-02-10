@@ -1,3 +1,4 @@
+'use client';
 import { User } from "../types/User";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 /**
