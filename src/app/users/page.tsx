@@ -17,6 +17,8 @@ const UsersPage = () => {
   // Используем useEffect для загрузки данных при монтировании компонента
   useEffect(() => {
     const fetchData = async () => {
+      console.log(123123);
+      
       const users = await fetchAllUsers();
       setUsers(users);
     };
