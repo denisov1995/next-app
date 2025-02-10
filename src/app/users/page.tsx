@@ -9,8 +9,8 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 async function fetchAllUsers(): Promise<any> {
   const res = await fetch(`${apiUrl}/users`);
   console.log('res', res);
-  // const users1: any = (await res.json()) as any;
-  // console.log('users1', users1);
+  const users1: any = (await res.json()) as any;
+  console.log('users1', users1);
   // const users: User[] = (await res.json()).data.users;
 
   // console.log('users', users);
