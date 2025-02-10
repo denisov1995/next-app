@@ -1,9 +1,11 @@
 import BackButton from "@/app/components/BackButton";
 import { fetchUserData } from "@/app/lib/fetchUserData";
+import { log } from "console";
 const UserPage = async ({ params }: any) => {
   const paramsValue = await params;
+  console.log('paramsValue',paramsValue);
   const user = await fetchUserData(paramsValue.id);
-
+  console.log('user', user);
   if (!user) {
     return (
       <div className="text-center text-red-500">Пользователь не найден</div>
