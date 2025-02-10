@@ -83,7 +83,7 @@ export default function handler(req: NextApiRequest, res: any) {
     // Обработка preflight-запросов
     if (req.method === 'OPTIONS') {
         console.log(7777);
-        
+
         res.status(200).end();
         return;
     }
@@ -93,8 +93,7 @@ export default function handler(req: NextApiRequest, res: any) {
         users.push(newUser);
         res.status(201).json(newUser);
     } else if (req.method === 'GET') {
-        console.log('{ data: { users } }', { data: { users } });
-        res.status(200).json("{ data: { users } }");
+        res.status(200).json({ message: 'Users fetched successfully!', data: { users } });
     } else {
         res.status(405).json({ message: 'Метод не поддерживается' });
     }
