@@ -3,14 +3,11 @@ import Link from "next/link";
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { User } from "../types/User";
 import BackButton from "../components/BackButton";
+import {fetchAllUsers} from "../lib/fetchAllUsers";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // Функция для получения всех пользователей
-async function fetchAllUsers(): Promise<User[]> {
-  const res = await fetch(`${apiUrl}/users`);
-  const users: User[] = (await res.json()).data.users;
-  return users;
-}
+
 
 // Компонент страницы пользователей
 const UsersPage = () => {
