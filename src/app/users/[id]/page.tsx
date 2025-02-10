@@ -1,15 +1,34 @@
-"use client"
+"use client";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import BackButton from "@/app/components/BackButton";
 import { fetchUserData } from "@/app/lib/fetchUserData";
-const UserPage = async ({ params }: any) => {
-  const paramsValue = await params;
-  console.log('paramsValue',paramsValue);
-  const user = await fetchUserData(paramsValue.id);
-  console.log('user', user);
+import { User } from "@/app/types/User";
+
+const UserPage = ({ params }: any) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    async function unwrapParams() {
+      const paramsValue = await params;
+      const user = await fetchUserData(paramsValue.id);
+
+      if (user) {
+        setUser(user);
+      } else {
+        setMessage("Пользователь не найден");
+      }
+    }
+
+    unwrapParams().catch((error) => {
+      console.error("Error fetching user data:", error);
+      setMessage("Failed to fetch user.");
+    });
+  }, [params]);
+
   if (!user) {
-    return (
-      <div className="text-center text-red-500">Пользователь не найден</div>
-    );
+    return <div className="text-center text-red-500">{message}</div>;
   }
 
   return (

@@ -3,48 +3,46 @@ import Link from "next/link";
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { User } from "../types/User";
 import BackButton from "../components/BackButton";
-import {fetchAllUsers} from "../lib/fetchAllUsers";
+import { fetchAllUsers } from "../lib/fetchAllUsers";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-// Функция для получения всех пользователей
-
-
-// Компонент страницы пользователей
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [newUser, setNewUser] = useState<User>({ id: '', name: '', email: '', phone: '' });
 
-  // Используем useEffect для загрузки данных при монтировании компонента
   useEffect(() => {
-    const fetchData = async () => {
-      console.log(123123);
-      
-      const users = await fetchAllUsers();
-      setUsers(users);
+    // Используем обычную функцию вместо async/await
+    const fetchData = () => {
+      fetchAllUsers().then(users => {
+        setUsers(users);
+      });
     };
     fetchData();
   }, []);
 
-  // Обработчик изменения полей формы
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
 
-  // Обработчик отправки формы
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const res = await fetch('/api/users', {
+    fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newUser)
-    });
-    if (res.ok) {
-      const addedUser = await res.json();
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('Failed to add user');
+      }
+    }).then(addedUser => {
       setUsers([...users, addedUser]);
       setNewUser({ id: '', name: '', email: '', phone: '' });
-    }
+    }).catch(error => {
+      console.error('Error adding user:', error);
+    });
   };
 
   return (
@@ -97,7 +95,7 @@ const UsersPage = () => {
             <p className="text-sm mb-1">{user.email}</p>
             <p className="text-sm mb-4">{user.phone}</p>
             <Link
-              href={`${apiUrl}/users/${user.id}`}
+              href={`/users/${user.id}`}
               className="text-green-500 hover:text-green-700"
             >
               Подробнее
