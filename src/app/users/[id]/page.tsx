@@ -4,9 +4,6 @@ import BackButton from "@/app/components/BackButton";
 import { fetchUserData } from "@/app/lib/fetchUserData";
 import { fetchAllUsers } from "@/app/lib/fetchAllUsers";
 const UserPage = async ({ params }: any) => {
-  const us = await fetchAllUsers()
-  console.log('us', us);
-  
   const paramsValue = await params;
   const user = await fetchUserData(paramsValue.id);
 
