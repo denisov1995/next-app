@@ -10,14 +10,19 @@ async function fetchAllUsers(): Promise<any> {
 const UserPage = async ({ params }: any) => {
   const us = await fetchAllUsers();
 
-  console.log('us',us);
-  
+  console.log("us", us);
+
   const paramsValue = await params;
   const user = await fetchUserData(paramsValue.id);
 
   if (!user) {
     return (
-      <div className="text-center text-red-500">Пользователь ${us} 123 не найден</div>
+      <>
+        <div className="text-center text-red-500">
+          Пользователь 123 не найден
+        </div>
+        {us}
+      </>
     );
   }
 
