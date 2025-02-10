@@ -79,6 +79,7 @@ export default function handler(req: NextApiRequest, res: any) {
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
+    console.log(111111);
     // Обработка preflight-запросов
     if (req.method === 'OPTIONS') {
         console.log(7777);
