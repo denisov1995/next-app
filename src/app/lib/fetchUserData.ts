@@ -7,6 +7,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
  */
 export async function fetchUserData(id: string): Promise<User | null> {
     const res = await fetch(`${apiUrl}/users/${id}`);
+    console.log('path', `${apiUrl}/users/${id}`);
 
     if (!res.ok) {
         return null;
