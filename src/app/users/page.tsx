@@ -21,6 +21,8 @@ const UsersPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const users = await fetchAllUsers();
+      console.log('users', users);
+      
       setUsers(users);
     };
     fetchData();
