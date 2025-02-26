@@ -50,7 +50,7 @@ export default NextAuth({
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         path: '/',
-        domain: process.env.NODE_ENV === 'production' ? '.next-app-eight-bice.vercel.app' : 'localhost',
+        domain: '.next-app-eight-bice.vercel.app',
       },
     },
   },
