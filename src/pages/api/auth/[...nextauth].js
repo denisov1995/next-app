@@ -50,7 +50,7 @@ export default NextAuth({
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         path: '/',
-        domain: '.next-app-eight-bice.vercel.app',
+        domain: process.env.NODE_ENV === 'production' ? '.next-app-eight-bice.vercel.app' : 'localhost',
       },
     },
   },
@@ -63,7 +63,7 @@ export default NextAuth({
     async signIn({ account, profile }) {
       if (account.provider === "google") {
         console.log(456, profile.email_verified, profile.email.endsWith("@gmail.com"));
-
+        
         return profile.email_verified && profile.email.endsWith("@gmail.com");
       }
       return true;
