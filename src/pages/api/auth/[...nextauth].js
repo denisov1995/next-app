@@ -44,10 +44,10 @@ export default NextAuth({
   ],
   cookies: {
     sessionToken: {
-      name: `__Secure-next-auth.session-token`,
+      name: `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}next-auth.session-token`,
       options: {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        // httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Только HTTPS в production
         sameSite: 'lax',
         path: '/',
         domain: process.env.NODE_ENV === 'production' ? '.next-app-eight-bice.vercel.app' : 'localhost',
@@ -63,7 +63,7 @@ export default NextAuth({
     async signIn({ account, profile }) {
       if (account.provider === "google") {
         console.log(456, profile.email_verified, profile.email.endsWith("@gmail.com"));
-        
+
         return profile.email_verified && profile.email.endsWith("@gmail.com");
       }
       return true;
