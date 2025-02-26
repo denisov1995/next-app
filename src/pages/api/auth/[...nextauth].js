@@ -5,7 +5,8 @@ import { PrismaClient } from '@prisma/client';
 import { compare, hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
-console.log('Prisma Client:', prisma);
+
+console.log('Prisma Client:', prisma.user);
 export default NextAuth({
   providers: [
     GoogleProvider({
