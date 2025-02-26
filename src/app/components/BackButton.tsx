@@ -8,7 +8,7 @@ const BackButton = () => {
   return (
     <button
       onClick={() => router.back()}
-      className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition duration-200"
+      className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition duration-200 mb-4"
     >
       Назад
     </button>

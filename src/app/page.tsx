@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import Link from "next/link";
 import Image from "next/image";
+import { GetSessionParams, SessionProvider } from "next-auth/react";
 
 const contractAddress = "0x535d36EcAfED6C03a61F9492760E054E9F52ABc2";
 
@@ -50,7 +51,7 @@ const contractABI = [
   },
 ];
 
-const HomePage = () => {
+const HomePage = ({ session }: any) => {
   const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
@@ -237,25 +238,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <header className="bg-gray-800 text-white p-4">
-        <nav className="container mx-auto flex justify-between">
-          <div className="flex items-center">
-            <Image src="/next.svg" alt="Next.js Logo" width={50} height={50} />
-            <h1 className="ml-2 text-2xl font-bold">My Website</h1>
-          </div>
-          <div className="flex items-center">
-            <Link
-              href="/about-us"
-              className="ml-4 text-white hover:text-gray-400"
-            >
-              About Us
-            </Link>
-            <Link href="/users" className="ml-4 text-white hover:text-gray-400">
-              Products
-            </Link>
-          </div>
-        </nav>
-      </header>
       <main className="container mx-auto py-16">
         <section className="text-center">
           <h2 className="text-4xl font-bold mb-4">Welcome to My Website</h2>

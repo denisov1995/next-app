@@ -69,7 +69,7 @@ const UsersPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 mt-8">
       <BackButton />
       <h1 className="text-2xl font-bold mb-4">Список пользователей</h1>
       <form
