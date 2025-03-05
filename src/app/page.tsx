@@ -6,7 +6,6 @@ import Image from "next/image";
 import { GetSessionParams, SessionProvider } from "next-auth/react";
 
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADRESS as string;
-console.log("contractAddress", contractAddress);
 
 const contractABI = [
   {
@@ -211,20 +210,6 @@ const HomePage = ({ session }: any) => {
       }
     }
   };
-
-  //   const acceptOrder = async () => {
-  //     try {
-  //       const contract = await init();
-  //       if (contract) {
-  //         const tx = await contract.acceptOrder();
-  //         await tx.wait();
-  //         setStatus("Order accepted and funds transferred.");
-  //       }
-  //     } catch (error: any) {
-  //       console.error("Error accepting order:", error);
-  //       setStatus("Error accepting order: " + error.message);
-  //     }
-  //   };
 
   const checkStatus = async () => {
     try {
