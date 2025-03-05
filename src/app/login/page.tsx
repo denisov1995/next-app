@@ -10,9 +10,7 @@ const Login = () => {
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение формы
-    console.log('Отправка данных для входа:', { email, password });
-  
+    e.preventDefault(); 
     try {
       const res = await signIn('credentials', {
         redirect: false,
@@ -24,8 +22,6 @@ const Login = () => {
         console.error('Ошибка входа:', res.error);
         alert('Ошибка входа. Проверьте свои учетные данные.');
       } else {
-        console.log('Успешный вход:', res);
-        // Временно закомментируем перенаправление для поиска проблемы
         router.push('/profile');
       }
     } catch (error) {

@@ -1,6 +1,8 @@
 'use client';
 import { User } from "../types/User";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+
 /**
  * Fetches user data from the server.
  * @param id The user ID to fetch.
@@ -8,7 +10,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
  */
 export async function fetchUserData(id: string): Promise<User | null> {
     const res = await fetch(`${apiUrl}/users/${id}`);
-
+    console.log('apiUrl',apiUrl);
     if (!res.ok) {
         return null;
     }

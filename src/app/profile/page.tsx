@@ -18,11 +18,9 @@ const Profile = () => {
     const checkSession = async () => {
       const res = await fetch('/api/session');
       if (res.status === 200) {
-        console.log('Сессия найдена');
         const data = await res.json();
         setSession(data.session);
       } else {
-        console.log('Сессия не найдена, перенаправление на страницу логина');
         router.push('/login');
       }
     };

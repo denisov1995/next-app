@@ -19,7 +19,6 @@ export default function handler(req: NextApiRequest, res: any) {
     if (req.method === 'POST') {
         const newUser = { ...req.body, id: (users.length + 1).toString() };
         users.push(newUser);
-        console.log('data', data);
         
         res.status(201).json(newUser);
     } else if (req.method === 'GET') {

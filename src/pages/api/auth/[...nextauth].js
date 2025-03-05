@@ -6,7 +6,6 @@ import { compare, hash } from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-console.log('Prisma Client:', prisma.user);
 export default NextAuth({
   providers: [
     GoogleProvider({
@@ -62,7 +61,6 @@ export default NextAuth({
   callbacks: {
     async signIn({ account, profile }) {
       if (account.provider === "google") {
-        console.log(456, profile.email_verified, profile.email.endsWith("@gmail.com"));
 
         return profile.email_verified && profile.email.endsWith("@gmail.com");
       }

@@ -36,9 +36,10 @@ export default function RootLayout({
                   width={50}
                   height={50}
                 />
-                <CustomLink link="/">My Website</CustomLink>
+                <CustomLink link="/">Website</CustomLink>
               </div>
               <div className="flex items-center">
+                <CustomLink link="/register">Registration</CustomLink>
                 <CustomLink link="/about-us">About Us</CustomLink>
                 <CustomLink link="/users">Products</CustomLink>
                 <CustomLink link="/profile">Profile</CustomLink>

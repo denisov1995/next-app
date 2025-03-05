@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { GetSessionParams, SessionProvider } from "next-auth/react";
 
-const contractAddress = "0x535d36EcAfED6C03a61F9492760E054E9F52ABc2";
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADRESS as string;
+console.log("contractAddress", contractAddress);
 
 const contractABI = [
   {
@@ -61,6 +62,8 @@ const HomePage = ({ session }: any) => {
       alert("Please install MetaMask!");
     }
   }, []);
+
+
 
   const init = async () => {
     if (!window.ethereum) {
