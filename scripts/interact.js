@@ -1,6 +1,6 @@
 async function main() {
     const [deployer] = await ethers.getSigners();
-    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; // Адрес вашего контракта
+    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; 
 
     const Lock = await ethers.getContractFactory("Lock");
     const lock = await Lock.attach(contractAddress);
@@ -20,12 +20,12 @@ main()
 
 async function depositFunds() {
     const [buyer] = await ethers.getSigners();
-    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; // Адрес вашего контракта
+    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; 
 
     const SupplyChain = await ethers.getContractFactory("SupplyChain");
     const supplyChain = await SupplyChain.attach(contractAddress);
 
-    const tx = await supplyChain.deposit({ value: ethers.utils.parseEther("0") }); // Внесение 1 ETH
+    const tx = await supplyChain.deposit({ value: ethers.utils.parseEther("0") }); 
     await tx.wait();
 
     console.log("Funds deposited.");
@@ -40,7 +40,7 @@ depositFunds()
 
 
 async function checkStatus() {
-    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; // Адрес вашего контракта
+    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; 
 
     const SupplyChain = await ethers.getContractFactory("SupplyChain");
     const supplyChain = await SupplyChain.attach(contractAddress);
@@ -60,7 +60,7 @@ checkStatus()
 
 async function acceptOrder() {
     const [buyer] = await ethers.getSigners();
-    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; // Адрес вашего контракта
+    const contractAddress = "0xa607466491a049Bfd19a77A63CFA100CCc7004BC"; 
 
     const SupplyChain = await ethers.getContractFactory("SupplyChain");
     const supplyChain = await SupplyChain.attach(contractAddress);
